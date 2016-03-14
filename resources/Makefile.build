@@ -1,0 +1,15 @@
+# Makefile.build
+
+SRCS = $(shell cd ${PROJECT_ROOT}/build && find src -type f -name '*.c')
+OBJS = $(patsubst %.c, %.o, $(SRCS))
+
+obj-m += test.o
+test-objs += $(OBJS)
+
+EXTRA_CFLAGS=${CFLAGS_STACK}
+
+all:
+	$(MAKE) -C $(KDIR) M=$$PWD modules
+
+clean:
+	$(MAKE) -C $(KDIR) M=$$PWD clean

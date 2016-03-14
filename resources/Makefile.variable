@@ -1,0 +1,40 @@
+# Variables for main Makefile
+
+## PGP Keys ID reference
+# 00411886 #Linus Torvalds
+# 6092693E #Greg Kroah-Hartman
+# ACC9965B #Denis Vlasenko (Busybox)
+
+export PROJECT_NAME	= test
+
+# Directories
+export PROJECT_ROOT	= /home/quentin/Projets/linux-driver-template
+export PROJECT_ENV	= ${PROJECT_ROOT}/env
+
+# Busybox
+export PROJECT_BUSYBOX_VERSION 		= busybox-1.24.1
+export PROJECT_BUSYBOX_SIGN_ID 		= ACC9965B #Denis Vlasenko (Busybox)
+export PROJECT_BUSYBOX_ARCHIVE 		= ${PROJECT_ROOT}/resources/sources/${PROJECT_BUSYBOX_VERSION}.tar.bz2
+export PROJECT_BUSYBOX_ARCHIVE_LINK	= https://busybox.net/downloads/${PROJECT_BUSYBOX_VERSION}.tar.bz2
+export PROJECT_BUSYBOX_SIGN_FILE 	= ${PROJECT_ROOT}/resources/sources/${PROJECT_BUSYBOX_VERSION}.tar.bz2.sign
+export PROJECT_BUSYBOX_SIGN_FILE_LINK	= https://busybox.net/downloads/${PROJECT_BUSYBOX_VERSION}.tar.bz2.sign
+export PROJECT_BUSYBOX_CONFIGURATION 	= ${PROJECT_ROOT}/resources/sources/${PROJECT_BUSYBOX_VERSION}.config
+
+# Linux Kernel
+export PROJECT_LINUX_VERSION		= linux-4.3.3
+export PROJECT_LINUX_SIGN_ID		= 00411886 #Linus Torvalds
+export PROJECT_LINUX_ARCHIVE		= ${PROJECT_ROOT}/resources/sources/${PROJECT_LINUX_VERSION}.tar.xz
+export PROJECT_LINUX_ARCHIVE_LINK	= https://cdn.kernel.org/pub/linux/kernel/v4.x/${PROJECT_LINUX_VERSION}.tar.xz
+export PROJECT_LINUX_SIGN_FILE		= ${PROJECT_ROOT}/resources/sources/${PROJECT_LINUX_VERSION}.tar.sign
+export PROJECT_LINUX_SIGN_FILE_LINK	= https://cdn.kernel.org/pub/linux/kernel/v4.x/${PROJECT_LINUX_VERSION}.tar.sign
+export PROJECT_LINUX_CONFIGURATION 	= ${PROJECT_ROOT}/resources/sources/${PROJECT_LINUX_VERSION}.config
+
+# Specific Makefile infos
+export CORES	= 2
+export ERROR	= \e[0;31m[ERROR]\e[0m
+export WARNING	= \e[0;33m[WARNING]\e[0m
+export INFO	= \e[0;32m[INFO]\e[0m
+
+# Build settings
+export KDIR	= ${PROJECT_ENV}/obj/${PROJECT_LINUX_VERSION}
+export CFLAGS	= -I${PROJECT_ROOT}/include

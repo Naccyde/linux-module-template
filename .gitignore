@@ -1,0 +1,8 @@
+# Folders
+env
+
+# Archives
+*.tar.bz2
+*.tar.bz2.sign
+*.tar.xz
+*.tar.sign
