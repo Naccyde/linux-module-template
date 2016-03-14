@@ -1,5 +1,6 @@
 # Folders
 env
+build
 
 # Archives
 *.tar.bz2
