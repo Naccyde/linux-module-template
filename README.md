@@ -1,28 +1,58 @@
+Requirements
+
+
 ## Template project for Kernel programming
 
-### Requirements :
-* glibc-static
+### Requirements (once repository cloned):
+* `gcc`
+* `glibc-static`
+* fe
 
 ### Setup :
 
-* In resources/Makefile.variable, change :
-  * PROJECT_ROOT : as the root folder of the project
-  * CORES : set the number of cores to use for project build
+* In `resources/Makefile.variable`, change :
+  * `PROJECT_NAME` : define the name of your project, thus the name of the output module
+  * `CORES` : set the number of cores to use for project build (default to 9)
+* Be sure to trust and sign theses PGP keys :
+  * `00411886` : Linux Torvalds (for Linux kernel)
+  * `6092693E` : Greg Kroah-Hartman (for some Linux Kernel releases)
+  * `ACC9965B` : Denis Vlasenko (for Busybox)
+* Then, call `make env` to prepare build environment
+
+Also, source files are in `src` folder and headers are in `include` folder.
 
 ### How to :
 
 #### Change Busybox version
-In resources/Makefile.variable, change :
+In `resources/Makefile.variable`, change :
 * PROJECT_BUSYBOX_VERSION : set the new version of Busybox
 * PROJECT_BUSYBOX_SIGN_ID : set the ID of the person who signed Busybox archive
+* Also, be sure to check the files URL (`PROJECT_BUSYBOX_ARCHIVE_LINK` and `PROJECT_BUSYBOX_SIGN_FILE_LINK`)
 
 #### Change the Kernel version
-In resources/Makefile.variable, change :
+In `resources/Makefile.variable`, change :
 * PROJECT_LINUX_VERSION : set the new version of the Kernel
 * PROJECT_LINUX_SIGN_ID : set the ID of the person who signed the Kernel archive
+* Also, be sure to check the files URL (`PROJECT_LINUX_ARCHIVE_LINK` and `PROJECT_LINUX_SIGN_FILE_LINK`)
 
-### Makefile target
-* `kernel` : download (is necessary) and build the Linux kernel
+#### Change Busybox configuration
+In `resources/Makefile.variable`, change :
+* `PROJECT_BUSYBOX_CONFIGURATION` : set the name of the configuration file. By default, the file is location to `${PROJECT_ROOT}/resources/sources/`
+
+#### Change Linux kernel configuration
+In `resources/Makefile.variable`, change :
+* `PROJECT_LINUX_CONFIGURATION` : set the name of the configuration file. By default, the file is location to `${PROJECT_ROOT}/resources/sources/`
+
+
+### Makefile targets
+* `all` : call `project` target
+* `project` : build the project in `build` directory
+* `test` : build an initramfs with the built module (if available), then start a QEMU session with the fresh Linux Kernel and the initramfs. You can the insert your module through the shell or change the init script (`${PROJECT_ROOT}/resources/init`) to insert the module at boot
+* `kernel` : download (if necessary) and build the Linux kernel with provided configuration (called in `make env`)
+* `busybox` : download (if necessary) and build Busybox with provided configuraiton (called in `make env`)
+* `initramfs` : generate the initramfs directories for the RAM filesystem
+* `env` : generate build environment by building Linux kernel, Busybox and initramfs
+* `generate_initramfs` : this target is called when using `make test`, it create the initramfs cpio archive with the lastest module built
 
 ### Build environment
 Build environment is made of two parts, the Linux kernel and an initramfs composed
@@ -33,6 +63,7 @@ This target download and build the Linux Kernel through the `scripts/make_kernel
 
 #### Busybox
 This target do the same operation as the `kernel` target but with Busybox. This file is downloaded, checked and extract. Then the default configuration is copied and the binaries are built. Thus, Busybox binaries are installed.
+Busybox is build with static glib
 
 ##### Default kernel configuration
 The default kernel configuration available in `resources` folder is the default `tinyconfig` configuration. Some options are added to a more easy debug :

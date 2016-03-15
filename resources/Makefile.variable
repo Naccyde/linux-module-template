@@ -30,7 +30,7 @@ export PROJECT_LINUX_SIGN_FILE_LINK	= https://cdn.kernel.org/pub/linux/kernel/v4
 export PROJECT_LINUX_CONFIGURATION 	= ${PROJECT_ROOT}/resources/sources/${PROJECT_LINUX_VERSION}.config
 
 # Specific Makefile infos
-export CORES	= 2
+export CORES	= 9
 export ERROR	= \e[0;31m[ERROR]\e[0m
 export WARNING	= \e[0;33m[WARNING]\e[0m
 export INFO	= \e[0;32m[INFO]\e[0m

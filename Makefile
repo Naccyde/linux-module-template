@@ -6,8 +6,6 @@ include resources/Makefile.variable
 
 all: project
 
-directories:
-
 project:
 	test -d build || mkdir build
 	cp -r src build
@@ -15,7 +13,7 @@ project:
 
 	$(MAKE) -C build -j ${CORES}
 
-tmp_test: generate_initramfs
+test: generate_initramfs
 	qemu-system-x86_64 \
 	-kernel env/obj/${PROJECT_LINUX_VERSION}/arch/x86_64/boot/bzImage \
 	-initrd env/obj/initramfs-${PROJECT_BUSYBOX_VERSION}.cpio.gz \
@@ -31,13 +29,13 @@ busybox:
 initramfs:
 	. scripts/make_initramfs.sh
 
-generate_initramfs:
-	. scripts/make_generate_initramfs.sh
-
 env:
 	. scripts/make_kernel.sh
 	. scripts/make_busybox.sh
 	. scripts/make_initramfs.sh
+
+generate_initramfs:
+	. scripts/make_generate_initramfs.sh
 
 tmp_clean:
 	$(MAKE) -C build clean
