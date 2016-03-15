@@ -7,6 +7,7 @@ MODULE_AUTHOR("Quentin Deslandes");
 static int __init ppinit_module(void)
 {
 	printk(KERN_INFO "Module inserted\n");
+
 	return 0;
 }
 

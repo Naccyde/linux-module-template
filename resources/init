@@ -5,8 +5,8 @@ mount -t sysfs none /sys
 
 echo -e "Boot finish ($(cut -d' ' -f1 /proc/uptime)s)\n"
 
-insmod dogedriver.ko
-insmod dogestack.ko
+#insmod module.ko
 export PS1=""
 
 exec /bin/sh
+

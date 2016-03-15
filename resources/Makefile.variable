@@ -5,10 +5,10 @@
 # 6092693E #Greg Kroah-Hartman
 # ACC9965B #Denis Vlasenko (Busybox)
 
-export PROJECT_NAME	= test
+export PROJECT_NAME	= project_name
 
 # Directories
-export PROJECT_ROOT	= /home/quentin/Projets/linux-driver-template
+export PROJECT_ROOT	= /home/quentin/Projets/linux-module-template
 export PROJECT_ENV	= ${PROJECT_ROOT}/env
 
 # Busybox

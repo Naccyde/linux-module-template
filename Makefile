@@ -6,18 +6,20 @@ include resources/Makefile.variable
 
 all: project
 
+directories:
+
 project:
+	test -d build || mkdir build
 	cp -r src build
 	cp resources/Makefile.build build/Makefile
 
 	$(MAKE) -C build -j ${CORES}
 
-tmp_test: initramfs
-	sudo qemu-system-x86_64 \
-	-kernel env/obj/${DOGE_LINUX_V}/arch/x86_64/boot/bzImage \
-	-initrd env/obj/initramfs-${DOGE_BUSYBOX_V}.cpio.gz \
-	-device pci-assign,host=07:00.0 \
-	-enable-kvm -nographic -append "ip=dhcp console=ttyS0 rd.shell=1 intel_iommu=on"
+tmp_test: generate_initramfs
+	qemu-system-x86_64 \
+	-kernel env/obj/${PROJECT_LINUX_VERSION}/arch/x86_64/boot/bzImage \
+	-initrd env/obj/initramfs-${PROJECT_BUSYBOX_VERSION}.cpio.gz \
+	-enable-kvm -nographic -append "console=ttyS0 rd.shell=1 intel_iommu=on"
 
 ## TOOLS
 kernel:
@@ -28,6 +30,9 @@ busybox:
 
 initramfs:
 	. scripts/make_initramfs.sh
+
+generate_initramfs:
+	. scripts/make_generate_initramfs.sh
 
 env:
 	. scripts/make_kernel.sh
