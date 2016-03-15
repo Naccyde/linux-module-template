@@ -14,9 +14,9 @@ Requirements
   * `PROJECT_NAME` : define the name of your project, thus the name of the output module
   * `CORES` : set the number of cores to use for project build (default to 9)
 * Be sure to trust and sign theses PGP keys :
-  * `00411886` : Linux Torvalds (for Linux kernel)
-  * `6092693E` : Greg Kroah-Hartman (for some Linux Kernel releases)
-  * `ACC9965B` : Denis Vlasenko (for Busybox)
+  * `gpg --import resources/pgp_keys/00411886.gpg` : Linux Torvalds (for Linux kernel)
+  * `gpg --import resources/pgp_keys/6092693E.gpg` : Greg Kroah-Hartman (for some Linux Kernel releases)
+  * `gpg --import resources/pgp_keys/ACC9965B.gpg` : Denis Vlasenko (for Busybox)
 * Then, call `make env` to prepare build environment
 
 Also, source files are in `src` folder and headers are in `include` folder.
