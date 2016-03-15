@@ -8,7 +8,7 @@
 export PROJECT_NAME	= project_name
 
 # Directories
-export PROJECT_ROOT	= /home/quentin/Projets/linux-module-template
+export PROJECT_ROOT	= $(shell pwd)
 export PROJECT_ENV	= ${PROJECT_ROOT}/env
 
 # Busybox
