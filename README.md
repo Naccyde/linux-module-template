@@ -75,5 +75,6 @@ Calling this command will download necessary packets (actually Busybox and Linux
 * `make_xxx` scripts are callable script from Makefile
 * No scripts should be called manually
 
-### License
-This project is under the GNU GPLv2 License.
+### About
+This project is under the GNU GPLv2 License. See COPYING.
+For any suggestion, you can contact quentin<at>naccyde<dot>eu.
