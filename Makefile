@@ -37,11 +37,11 @@ env:
 generate_initramfs:
 	. scripts/make_generate_initramfs.sh
 
-tmp_clean:
+clean:
 	$(MAKE) -C build clean
 
-tmp_mrproper:
+mrproper:
 	rm -rf build
 
-tmp_masterclean: mrproper
+masterclean: mrproper
 	rm -rf env

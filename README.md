@@ -53,6 +53,9 @@ In `resources/Makefile.variable`, change :
 * `initramfs` : generate the initramfs directories for the RAM filesystem
 * `env` : generate build environment by building Linux kernel, Busybox and initramfs
 * `generate_initramfs` : this target is called when using `make test`, it create the initramfs cpio archive with the lastest module built
+* `clean` : call clean target in the `build` directory
+* `mrproper` : remove the `build` directory
+* `masterclean` : remove `build` and `env` directories
 
 ### Build environment
 Build environment is made of two parts, the Linux kernel and an initramfs composed
