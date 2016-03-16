@@ -78,6 +78,6 @@ Calling this command will download necessary packets (actually Busybox and Linux
 ### About
 This project is under the GNU GPLv2 License. See COPYING.
 
-For any suggestion, you can contact quentin at naccyde dot eu.
+For any suggestion, you can contact `quentin at naccyde dot eu`.
 
 Main repository is available on [my personnal Gitlab](http://git.naccyde.eu/naccyde/linux-module-template)
