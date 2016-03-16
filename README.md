@@ -1,12 +1,9 @@
-Requirements
-
 
 ## Template project for Kernel programming
 
 ### Requirements (once repository cloned):
 * `gcc`
 * `glibc-static`
-* fe
 
 ### Setup :
 
@@ -57,29 +54,23 @@ In `resources/Makefile.variable`, change :
 * `mrproper` : remove the `build` directory
 * `masterclean` : remove `build` and `env` directories
 
-### Build environment
-Build environment is made of two parts, the Linux kernel and an initramfs composed
-of Busybox and a minimalistic file architecture
+### More about the build environment
+`make env` allow you to create the build and tests environment for your Kernel module.
+Calling this command will download necessary packets (actually Busybox and Linux Kernel), extract and build them, so they are ready to be launched from QEMU to test the LKM.
 
-#### Kernel
-This target download and build the Linux Kernel through the `scripts/make_kernel.sh` script. First, it call `scripts/linux/get_kernel.sh` to download the Linux Kernel indicated in `Makefile.variable`, then it checks the signature using the given key. Thus, `scripts/linux/build_kernel.sh` is called. This script will first generate a kernel `tinyconfig` to create build directory, then copy the default kernel configuration from the `resources` folder (named after the Linux kernel version and fully customizable), and build the kernel. `make modules_prepare` will also be called to prepare out-of-tree module building.
+#### Steps for environment creation :
+* __Creation of env folder__ : all will be extracted / build in this folder
+* __Preparation of Linux__ : download (if necessary) / check signature / extract Linux Kernel / build it
+* __Preparation of Busybox__ : download (if necessary) / check signature / extract Busybox / build it
+* __Creation of initramfs__ : create the initramfs from Busybox and Unix directories
 
-#### Busybox
-This target do the same operation as the `kernel` target but with Busybox. This file is downloaded, checked and extract. Then the default configuration is copied and the binaries are built. Thus, Busybox binaries are installed.
-Busybox is build with static glib
-
-##### Default kernel configuration
-The default kernel configuration available in `resources` folder is the default `tinyconfig` configuration. Some options are added to a more easy debug :
-* fez
-
-##### Build
-* Use the configuration file available in resources folder. Name of the file can be changed in Makefile.variable file
-* The default config content is the result of `make tinyconfig`
-* Before Linux build we call `make prepare`
-
-#### Busybox
+#### Linux and Busybox download and build are similar, here are the steps :
+* First, it call the script to download the sources (`scripts/linux/get_kernel.sh` or `scripts/busybox/get_busybox.sh`) to download the sources indicated in `Makefile.variable`
+* Then it checks the signature using the given key (`PROJECT_LINUX_SIGN_ID` or `PROJECT_BUSYBOX_SIGN_ID`)
+* Thus, the build script is called (`scripts/linux/build_kernel.sh` or `scripts/busybox/build_busybox.sh`).
+   * Linux : this script will first generate a kernel `defconfig` to create build directory, then copy the default kernel configuration from the `resources` folder (named after the Linux kernel version and fully customizable), and build the kernel. `make modules_prepare` will also be called to prepare out-of-tree module building.
+   * Busybox : this script will call `make defconfig` on Busybox sources, then copy the default Busybox configuration from the `resources` folder (this configuration is fully customizable), and Busybox will be built. Also, Busybox is built against static glibc.
 
 ### Other
 * `make_xxx` scripts are callable script from Makefile
 * No scripts should be called manually
-* Function from `tools.sh` should only contain error informations
