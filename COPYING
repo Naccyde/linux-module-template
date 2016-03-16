@@ -1,0 +1,11 @@
+--2016-03-16 10:25:26--  http://www.gnu.org/licenses/gpl.txt
+Résolution de www.gnu.org (www.gnu.org)… 208.118.235.148, 2001:4830:134:3::a
+Connexion à www.gnu.org (www.gnu.org)|208.118.235.148|:80… connecté.
+requête HTTP transmise, en attente de la réponse… 200 OK
+Taille : 35147 (34K) [text/plain]
+Sauvegarde en : « gpl.txt »
+
+     0K .......... .......... .......... ....                 100%  110K=0,3s
+
+2016-03-16 10:25:26 (110 KB/s) — « gpl.txt » sauvegardé [35147/35147]
+
