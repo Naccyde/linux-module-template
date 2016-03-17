@@ -36,7 +36,7 @@ export PROJECT_BUSYBOX_SIGN_FILE_LINK	= https://busybox.net/downloads/${PROJECT_
 export PROJECT_BUSYBOX_CONFIGURATION 	= ${PROJECT_ROOT}/resources/sources/${PROJECT_BUSYBOX_VERSION}.config
 
 # Linux Kernel
-export PROJECT_LINUX_VERSION		= linux-4.3.3
+export PROJECT_LINUX_VERSION		= linux-4.5
 export PROJECT_LINUX_SIGN_ID		= 00411886 #Linus Torvalds
 export PROJECT_LINUX_ARCHIVE		= ${PROJECT_ROOT}/resources/sources/${PROJECT_LINUX_VERSION}.tar.xz
 export PROJECT_LINUX_ARCHIVE_LINK	= https://cdn.kernel.org/pub/linux/kernel/v4.x/${PROJECT_LINUX_VERSION}.tar.xz
